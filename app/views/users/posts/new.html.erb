@@ -1,3 +1,14 @@
+<% if current_user %>
+    <p> Hola <%=  current_user.email %> </p>
+    <p> Tu Perfil es:  <%=  current_user.role %></p>
+    <% if current_user.Editor? %>
+    <%= Post.count %>
+    <% end %>
+        <% else %>
+     <p>  No estas autenticado <p>
+<% end %>
+
+
 <div class="row">
     <div class="col-md-4">
 
