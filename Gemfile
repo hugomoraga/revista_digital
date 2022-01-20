@@ -57,3 +57,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "stimulus_reflex", "~> 3.4"
+
+gem "optimism", "~> 0.5.0"
+
+gem "friendly_id" , "~> 5.2.4"

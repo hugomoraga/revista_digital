@@ -87,6 +87,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.10.0)
     ffi (1.15.4)
+    friendly_id (5.2.5)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -110,6 +112,10 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
+    optimism (0.5.0)
+      cable_ready (>= 4.4.6)
+      rack (~> 2.0)
+      rails (>= 5.2)
     orm_adapter (0.5.0)
     pg (1.2.3)
     pry (0.14.1)
@@ -231,8 +237,10 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
+  friendly_id (~> 5.2.4)
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  optimism (~> 0.5.0)
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)

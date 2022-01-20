@@ -27,6 +27,6 @@ module RevistaDigital
       ActionText::ContentHelper.allowed_tags.add 'embed'
       ActionText::ContentHelper.allowed_tags.add 'iframe'
     end
-    
+
   end
 end

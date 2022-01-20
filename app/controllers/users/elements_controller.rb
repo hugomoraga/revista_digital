@@ -34,7 +34,7 @@ module Users
       # Use callbacks to share common setup or constraints between actions.
 
       def set_post
-        @post = current_user.posts.find(params[:post_id])
+        @post = current_user.posts.friendly.find(params[:post_id])
       end
 
       def set_element
