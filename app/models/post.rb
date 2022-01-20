@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   friendly_id :title, use: [:slugged, :history]
 
   belongs_to :user
+  belongs_to :category
   has_many :elements
 
   has_one_attached :header_image

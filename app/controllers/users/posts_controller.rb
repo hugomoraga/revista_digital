@@ -61,7 +61,7 @@ module Users
 
       # Only allow a list of trusted parameters through.
       def post_params
-        params.require(:post).permit(:title, :description, :header_image)
+        params.require(:post).permit(:title, :description, :header_image, :category_id)
       end  
   end
 end

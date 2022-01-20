@@ -12,27 +12,30 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :title %>
+    <%= form.label :Titulo %>
     <%= form.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :description %>
+    <%= form.label :Descripcion %>
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
     <div class="form-group">
-      <%= form.label :header_image %>
+      <%= form.label :Imagen_Principal %>
       <%= form.file_field :header_image, class: 'form-control' %>
-      <div class="mt-1">
+      <div class="mt-1 p-2">
         <% if post.header_image.present? %>
           <small>Imagen Actual</small>
           <%= image_tag(post.header_image, width: '100%') %>
         <% end %>
       </div>
   </div>
-
-
+  
+  <div class="form-group pt-2">
+    <%= form.label :categoria %>
+    <%= form.select :category_id, Category.all.map {|c| [c.category, c.id]}, {}, {class: "form-select mt-1"}  %>
+  </div>
 
   <div class="actions">
     <%= form.submit class: 'btn btn-primary mt-2 btn-block' %>
