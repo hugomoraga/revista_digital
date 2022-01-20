@@ -30,7 +30,16 @@
           <%= image_tag(post.header_image, width: '100%') %>
         <% end %>
       </div>
-  </div>
+    </div>
+
+    <% if current_user.Editor?  %>
+
+    <%= form.label :Verificada  %>
+    <%= form.check_box :verifiedone, class: '' %>
+
+    <% end %>
+
+
   
   <div class="form-group pt-2">
     <%= form.label :categoria %>

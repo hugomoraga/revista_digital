@@ -9,6 +9,9 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-2">
+          <% if post.category.present? %>
+            <%= post.category.category %>
+          <<% end %>
             <% if post.header_image.present? %>
               <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>);"></div>
             <% end %>
@@ -19,6 +22,8 @@
             <% else %>
               <span class="badge bg-secondary mb-3">No publicado</span>
             <% end %>
+
+           
             <h5 class='card-title text-dark'><%= post.title %>  </h5>
             <p class='text-secondary mb-0'><%= post.description %></p>
           </div>

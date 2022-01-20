@@ -10,6 +10,9 @@
                     <%= render 'form', post: @post %>
 
                 </div>
+            
+            <% if @post.verifiedone? %>
+
                 <div class="card-footer">
                     <% if @post.published? %>
                         <a href="#" 
@@ -25,7 +28,15 @@
                         Publicar</a>
                     <% end %>
                 </div>
+
+            <% else %>
+            <div class="card-footer">
+            Entrada aun no verificada
             </div>
+
+            <% end %>
+                        </div>
+
     </div>
     <div class="col-md-8">
         <div class="mb-3 row g-2">
