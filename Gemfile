@@ -61,3 +61,5 @@ gem "stimulus_reflex", "~> 3.4"
 gem "optimism", "~> 0.5.0"
 
 gem "friendly_id" , "~> 5.2.4"
+
+gem 'activeadmin'
