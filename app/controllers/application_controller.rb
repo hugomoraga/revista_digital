@@ -11,4 +11,6 @@ class ApplicationController < ActionController::Base
         return unless current_user&.profile.role == 'Administrador'
         current_user
       end
+
+     
 end

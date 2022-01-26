@@ -10,6 +10,8 @@ module Users
 
     # GET /posts/1 or /posts/1.json
     def show
+      @post = Post.friendly.find(params[:id])
+
     end
 
     # GET /posts/new

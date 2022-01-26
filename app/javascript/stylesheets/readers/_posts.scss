@@ -1,0 +1,18 @@
+.readers {
+    .post-card {
+        height: 400px;
+        .header-image {
+            height: 230px;
+            background-size: cover;
+            background-position: center;
+        }
+    }
+    .post-featured-card {
+        .header-image {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+        }
+
+    }
+}

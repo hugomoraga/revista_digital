@@ -43,7 +43,7 @@ module Users
 
       # Only allow a list of trusted parameters through.
       def element_params
-        params.require(:element).permit(:element_type, :content, :image)
+        params.require(:element).permit(:element_type, :content, :image, carousel: [])
       end
   end
 end

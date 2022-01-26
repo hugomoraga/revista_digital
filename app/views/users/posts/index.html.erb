@@ -11,7 +11,7 @@
           <div class="col-md-2">
           <% if post.category.present? %>
             <%= post.category.category %>
-          <<% end %>
+          <% end %>
             <% if post.header_image.present? %>
               <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>);"></div>
             <% end %>

@@ -1,0 +1,37 @@
+<div class="row">
+    <% @posts.each do |post| %>
+        <div class="col-md-4 col-sm-6">
+        <%= link_to edit_post_path(post), class: 'text-decoration-none' do %>
+            <div class="card mb-3 post-card rounded-0 post-card border-0 shadow-sm pb-4">
+                <% if post.header_image.present? %>
+                    <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>)">
+                    </div>
+                <% else %>
+                    <div class="p-4"> SIN IMAGEN</div>
+                <% end %>
+
+                <div class="card-body">
+                    <div class="fs-5">
+                    <% if post.category.present? %>
+                        <%= post.category.category %>
+                        <% else %>
+                        <p>SIN CATEGORIA</p>
+                    <% end %>
+                    </div>
+                
+                    <div class="row">
+            
+                        <div class="col-md-12">
+                        <p class='text-secondary mb-0 fs-4'><%= truncate(post.description, length: 30) %></p>
+
+                           <h5 class='card-title text-dark fs-3 fw-bold'><%= post.title %>  </h5>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        <% end %>
+        
+        </div>
+        
+    <% end %>
+</div>

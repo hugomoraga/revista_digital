@@ -1,3 +1,38 @@
+<style>
+.controls {
+  list-style: none;
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  transform: translatey(-50%);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls:focus {
+  outline: none;
+}
+
+.controls li:hover {
+  cursor: pointer;
+}
+.tns-nav>.tns-nav-active {
+  background: rgb(190, 189, 189) !important;
+}
+.tns-nav>[aria-controls] {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  margin: 0 10px;
+  border-radius: 50%;
+  background: rgb(146, 137, 137);
+  border: 0;
+}
+.tns-nav {
+  text-align: center;
+  margin: 10px 0;
+}
+</style>
 <div class="row">
     <div class="col-md-4">
         <%= link_to 'Atras', posts_path, class: 'btn btn-dark mb-3' %>
@@ -5,38 +40,31 @@
                 <div class="card-header">
                     <h5 class="card-title mb-0">Editar Entrada</h5>
                 </div>
-
                 <div class="card-body">
                     <%= render 'form', post: @post %>
-
                 </div>
-            
-            <% if @post.verifiedone? %>
-
-                <div class="card-footer">
-                    <% if @post.published? %>
-                        <a href="#" 
-                        class='btn btn-secondary btn-block' 
-                        data-reflex='click->PublisherReflex#unpublish'
-                        data-post-id='<%= @post.id %>'>
-                        Despublicar</a>
-                    <% else %>
-                        <a href="#" 
-                        class='btn btn-dark btn-block' 
-                        data-reflex='click->PublisherReflex#publish'
-                        data-post-id='<%= @post.id %>'>
-                        Publicar</a>
-                    <% end %>
-                </div>
-
-            <% else %>
-            <div class="card-footer">
-            Entrada aun no verificada
+                <% if @post.verifiedone? %>
+                    <div class="card-footer">
+                        <% if @post.published? %>
+                            <a href="#" 
+                            class='btn btn-secondary btn-block' 
+                            data-reflex='click->PublisherReflex#unpublish'
+                            data-post-id='<%= @post.id %>'>
+                            Despublicar</a>
+                        <% else %>
+                            <a href="#" 
+                            class='btn btn-dark btn-block' 
+                            data-reflex='click->PublisherReflex#publish'
+                            data-post-id='<%= @post.id %>'>
+                            Publicar</a>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <div class="card-footer">
+                        Entrada aun no verificada
+                    </div>
+                <% end %>
             </div>
-
-            <% end %>
-                        </div>
-
     </div>
     <div class="col-md-8">
         <div class="mb-3 row g-2">
@@ -52,84 +80,133 @@
                    <i class="fas fa-image"></i>
                 <% end %>
             <% end %>
+            <%= form_with(model: [@post, @element], html: { class: 'col-auto' }) do |form| %>
+                <%= form.hidden_field :element_type, value: 'carousel' %>
+                <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+                   <i class="fas fa-image"></i>
+                <% end %>
+            <% end %>
         </div>
         <div class="card mb-5">
             <div class="card-header text-end">
-             <% if @post.published? %>
-                <span class="badge bg-primary">Publicado</span>
-                Publicado <%= time_ago_in_words(@post.published_at) %>
+                <% if @post.published? %>
+                    <span class="badge bg-primary">Publicado</span> Publicado <%= time_ago_in_words(@post.published_at) %>
                 <% else %>
-                Despublicado
+                    Despublicado
                 <% end %>
             </div>
             <div class="card-body pt-5" data-controller="elements">
-            <% if @post.elements.none? { |element| element.persisted? } %>
-                <div class="p-4 text-center">
-                    <h2 class="text-secondary">
-                        <i class="fas fa-lightbulb"></i>
-                    </h2>
-                    <p>Click en los iconos para agregar elementos al post</p>
-                </div> 
-            <% else %>
-                <ul id='elements' data-action="drop->elements#sort">
-                    <% @post.elements.order(position: :asc).each do |element| %>
-                        <% if element.persisted? %>
-                            <li data-id="<%= element.id %>"  class='element-item'>
-                            <% if element.paragraph? %>
-                                <div class="mb-3 p-3 paragraph">
-                                    <div class="paragraph-content">
-                                        <% if element.content.present? %>
-                                            <%= element.content %>
-                                        <% else %>
-                                            <p class="p-3" style="border-style: dotted; border-color:#5c636a"> Haz click para añadir contenido</p>
-                                        <% end %>
-                                    </div>
-                                    <div class="paragraph-form d-none"  id='<%= element.id %>-form'>
-                                        <%= form_with(model: [@post, element]) do |form| %>
-                                            <%= form.rich_text_area :content, id: "element_content_#{element.id}" %>  
-                                            <div class="mt-3 d-flex justify-content-between">
-                                                <div> 
-                                                <%= form.submit "Guardar",  class: 'btn btn-primary' %>
-                                                <a href="#" class='cancel btn btn-secondary' > cancelar</a>
+                <% if @post.elements.none? { |element| element.persisted? } %>
+                    <div class="p-4 text-center">
+                        <h2 class="text-secondary">
+                            <i class="fas fa-lightbulb"></i>
+                        </h2>
+                        <p>Click en los iconos para agregar elementos al post</p>
+                    </div> 
+                <% else %>
+                    <ul id='elements' data-action="drop->elements#sort">
+                        <% @post.elements.order(position: :asc).each do |element| %>
+                            <% if element.persisted? %>
+                                <li data-id="<%= element.id %>"  class='element-item'>
+                                    <% if element.paragraph? %>
+                                        <div class="mb-3 p-3 paragraph">
+                                            <div class="paragraph-content">
+                                                <% if element.content.present? %>
+                                                    <%= element.content %>
+                                                <% else %>
+                                                    <p class="p-3" style="border-style: dotted; border-color:#5c636a"> Haz click para añadir contenido</p>
+                                                <% end %>
+                                            </div>
+                                            <div class="paragraph-form d-none"  id='<%= element.id %>-form'>
+                                                <%= form_with(model: [@post, element]) do |form| %>
+                                                    <%= form.rich_text_area :content, id: "element_content_#{element.id}" %>  
+                                                    <div class="mt-3 d-flex justify-content-between">
+                                                        <div> 
+                                                        <%= form.submit "Guardar",  class: 'btn btn-primary' %>
+                                                        <a href="#" class='cancel btn btn-secondary' > cancelar</a>
+                                                        </div>
+                                                        <%= link_to 'Borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "¿Estas Seguro?"} %>
+                                                    </div>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                    <% elsif element.image? %>
+                                        <div class="mb-4 p-3 image">
+                                            <%if element.image.present? %> 
+                                                <%= link_to post_element_path(@post, element), method: :delete, class: 'btn btn-secondary mt-2 floar-right delete-btn', data: { confirm: "¿Estas Seguro?"} do %>
+                                                    <i class="fas fa-times"></i>
+                                                <% end %>
+                                                <div>
+                                                <%= image_tag(element.image) %>
                                                 </div>
-                                                <%= link_to 'Borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "¿Estas Seguro?"} %>
+                                            <% else %>
+                                                <%= form_with(model: [@post, element]) do |form| %>
+                                                    <%= form.file_field :image %>   
+                                                        <div class="mt-3">
+                                                            <%= form.submit "Guardar",  class: 'btn btn-primary' %>
+                                                            <a href="#" class='cancel btn btn-secondary' > Cancelar</a>
+                                                            <%= link_to post_element_path(@post, element), method: :delete, class: 'btn btn-secondary', data: { confirm: "¿Estas Seguro?"} do %>
+                                                               Eliminar <i class="fas fa-times"></i>
+                                                <% end %>
+                                                        </div>
+                                                    <% end %>
+                                            <% end %>
+                                        </div>
+                                    <% elsif element.carousel? %>
+
+                                    <%if element.carousel.present? %>
+                                        <div class="mb-4 image border border-3">
+
+                                       <%= link_to post_element_path(@post, element), method: :delete, class: 'btn btn-secondary mt-2 floar-right delete-btn', data: { confirm: "¿Estas Seguro?"} do %>
+                                                    <i class="fas fa-times"></i>
+                                                <% end %>
+                                    <div class="my-slider position-relative p-3 text-center" >
+                                        <% element.carousel.each do |image| %>
+                                            <div style="height:500px;">
+                                            <%= image_tag image %>
                                             </div>
                                         <% end %>
                                     </div>
+
                                 </div>
-                            <% elsif element.image? %>
-                                <div class="mb-4 p-3 image">
-                                    <%if element.image.present? %> 
-                                        <%= link_to post_element_path(@post, element), method: :delete, class: 'btn btn-secondary mt-2 floar-right delete-btn', data: { confirm: "¿Estas Seguro?"} do %>
-                                            <i class="fas fa-times"></i>
-                                        <% end %>
 
-                                        <div>
-                                            <%= image_tag(element.image) %>
 
-                                        </div>
-                                        <% else %> 
 
-                                            <%= form_with(model: [@post, element]) do |form| %>
-                                                <%= form.file_field :image %>   
-                                                    <div class="mt-3">
-                                                        <%= form.submit "Guardar",  class: 'btn btn-primary' %>
-                                                        <a href="#" class='cancel btn btn-secondary' > cancelar</a>
+                                    <% else %>
 
-                                                    </div>
+                                        <%= form_with(model: [@post, element]) do |form| %>
+                                             <%= form.file_field :carousel, multiple: true %>   
+                                                <div class="mt-3">
+                                                    <%= form.submit "Guardar",  class: 'btn btn-primary' %>
+                                                    <a href="#" class='cancel btn btn-secondary' > cancelar</a>
+                                                 </div>
                                         <% end %>
                                     <% end %>
-                                </div>
-                                
+                                  
+                                    <% end %>
+                                </li>
                             <% end %>
                         <% end %>
-                        </li>
-                    <% end %>
-                </ul>
-               
-            <% end %>
+                    </ul>
+                <% end %>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<script>
+  var slider = tns({
+    container: '.my-slider',
+    items: 1,
+    navPosition: 'botton',
+    autoplayButtonOutput: false,
+    autoplay: true,
+    arrowKeys: true,
+    controlsText : ["<",">"]
+
+
+  });
+</script>
 

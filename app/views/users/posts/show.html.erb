@@ -1,0 +1,43 @@
+<h1>    
+    <%= @post.title %>
+    
+</h1>
+
+        <p class='text-secondary mb-0'><%= @post.description %></p>
+        <ul id='elements' data-action="drop->elements#sort">
+            <% @post.elements.order(position: :asc).each do |element| %>
+                <% if element.persisted? %>
+                    <li>
+                        <% if element.paragraph? %>
+                            <div class="mb-3 p-3 paragraph">
+                                <div class="paragraph-content">
+                                    <% if element.content.present? %>
+                                        <%= element.content %>
+                                    <% end %>
+                                </div>
+                            </div>
+                        <% elsif element.image? %>
+                            <div class="mb-4 p-3 image">
+                                <%if element.image.present? %>
+                                    <div>
+                                        <%= image_tag(element.image) %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        <% elsif element.carousel? %>
+                            <%if element.carousel.present? %>
+                                <div class="mb-4 image border border-3">   
+                                    <div class="my-slider position-relative p-3 text-center" >
+                                        <% element.carousel.each do |image| %>
+                                            <div style="height:500px;">
+                                            <%= image_tag image %>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>

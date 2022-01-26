@@ -1,0 +1,36 @@
+version: "3.9"
+
+##############################################
+# Common config
+##############################################
+
+x-app-base: &revista-digital
+  image: revista_digital
+  stdin_open: true
+  tty: true
+  volumes:
+    - .:/app
+
+##############################################
+# Services
+##############################################
+
+services:
+  web:
+    <<: *revista-digital
+    build: .
+    ports:
+      - "4000:3000"
+    command: ./bin/rails s -p 3000 -b '0.0.0.0'
+    depends_on:
+      - database
+  database:
+    image: postgres:latest
+    volumes:
+      - .:/app
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: revista_digital_development
+      POSTGRES_HOST_AUTH_METHOD: trust
+        
