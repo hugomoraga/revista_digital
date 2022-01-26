@@ -1,7 +1,7 @@
 module Readers
   class HomeController < ReadersController
     def index
-      @posts = Post.published.most_recently_published
+      @posts = Post.most_recently_published
       @categories = Category.all
     end
 

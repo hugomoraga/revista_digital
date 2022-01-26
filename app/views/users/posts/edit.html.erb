@@ -43,7 +43,9 @@
                 <div class="card-body">
                     <%= render 'form', post: @post %>
                 </div>
-                <% if @post.verifiedone? %>
+           <%
+=begin %>   
+           <% if @post.verifiedone? %>
                     <div class="card-footer">
                         <% if @post.published? %>
                             <a href="#" 
@@ -64,6 +66,24 @@
                         Entrada aun no verificada
                     </div>
                 <% end %>
+               <%
+=end %>
+
+   <% if @post.published? %>
+                            <a href="#" 
+                            class='btn btn-secondary btn-block' 
+                            data-reflex='click->PublisherReflex#unpublish'
+                            data-post-id='<%= @post.id %>'>
+                            Despublicar</a>
+                        <% else %>
+                            <a href="#" 
+                            class='btn btn-dark btn-block' 
+                            data-reflex='click->PublisherReflex#publish'
+                            data-post-id='<%= @post.id %>'>
+                            Publicar</a>
+                        <% end %>
+
+
             </div>
     </div>
     <div class="col-md-8">
