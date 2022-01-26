@@ -64,4 +64,5 @@ Rails.application.configure do
 
   # Devise Setting
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.hosts << "revistadigital.tchile.com"
 end
