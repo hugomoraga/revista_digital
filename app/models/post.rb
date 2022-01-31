@@ -22,4 +22,10 @@ class Post < ApplicationRecord
   def should_generate_new_friendly_id?
     title_changed?
   end
+
+  scope :category_opinion, -> do
+    Category.where(category: 'Opinión')
+  end
+
+
 end

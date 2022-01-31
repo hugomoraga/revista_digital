@@ -2,6 +2,7 @@ ActiveAdmin.register Post do
 
   permit_params :title, :description, :published, :published_at, :user_id, :slug, :category_id, :verifiedone
   
+  menu label: "Articulos"
 
 
   # See permitted parameters documentation:

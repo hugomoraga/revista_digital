@@ -49,7 +49,10 @@
     <div class="collapse navbar-collapse" id="menu-principal">
         <ul class="navbar-nav fs-3 d-block p-2 container">
             <% menus.each do |menu| %>
-        <li class="nav-item text-uppercase d-inline-flex align-items-center "> <%= link_to menu.category, category_path(menu), :class => 'text-decoration-none nav-link text-primary' %> <span class="p-0 fw-bold">/</span> </li>
+                <%  if menu.category != 'Opinión' %>    
+                    <li class="nav-item text-uppercase d-inline-flex align-items-center "> <%= link_to menu.category, category_path(menu), :class => 'text-decoration-none nav-link text-primary' %> <span class="p-0 fw-bold">/</span> </li>
+                <% end %>
+
             <% end %>
         </ul>
     </div>
