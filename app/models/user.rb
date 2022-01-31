@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :posts
-  enum role: [:Periodista, :Editor, :Administrador]
+  enum role: [:periodista, :editor, :admin]
   after_initialize :set_default_role, :if => :new_record?
   def set_default_role
       self.role ||= :user

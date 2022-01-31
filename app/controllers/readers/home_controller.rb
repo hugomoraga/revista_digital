@@ -7,5 +7,6 @@ module Readers
 
     def show
     end
+
   end
 end

@@ -65,4 +65,8 @@ Rails.application.configure do
   # Devise Setting
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.hosts << "revistadigital.tchile.com"
+
+  config.action_cable.allowed_request_origins = [ 'http://revistadigital.tchile.com' ]
+  config.web_console.whitelisted_ips = '131.108.209.9'
+
 end

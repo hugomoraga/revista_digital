@@ -13,7 +13,7 @@
 
   </head>
 
-  <body>    
+  <body class="bg-light readers">    
 
   <%= render "layouts/header" %>
 
@@ -21,6 +21,7 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
+  <%= render "layouts/footer" %>
 
   </body>
 </html>

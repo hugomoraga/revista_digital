@@ -42,18 +42,17 @@
             </div>
         </div>
     </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="menu-principal">
-    <ul class="navbar-nav fs-3 lh-lg d-block p-2 ">
-      <% menus.each do |menu| %>
- <li class="px-2 nav-item text-uppercase d-inline-flex align-items-center "> <%= link_to menu.category, category_path(menu), :class => 'text-decoration-none nav-link' %> <span class="p-0 fw-bold">/</span> </li>
-<% end %>
-    
-    </ul>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #E6E7E9 !important;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu-principal">
+        <ul class="navbar-nav fs-3 d-block p-2 container">
+            <% menus.each do |menu| %>
+        <li class="nav-item text-uppercase d-inline-flex align-items-center "> <%= link_to menu.category, category_path(menu), :class => 'text-decoration-none nav-link text-primary' %> <span class="p-0 fw-bold">/</span> </li>
+            <% end %>
+        </ul>
+    </div>
 </nav>
 </header>
 

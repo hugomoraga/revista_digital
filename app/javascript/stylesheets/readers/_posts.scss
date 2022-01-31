@@ -6,6 +6,18 @@
             background-size: cover;
             background-position: center;
         }
+        .div-card-h {
+            margin: 1px 0 3px 15px;
+        }
+        .div-card-h p {
+            padding: 0px 9px 3px 11px;
+        }
+        .div-card-b {
+            margin: 1px 0 3px 15px;
+            padding: 0 30px 10px 7px;
+            width: 474px;
+            background: #0000006e
+        }
     }
     .post-featured-card {
         .header-image {
@@ -15,4 +27,5 @@
         }
 
     }
+    
 }

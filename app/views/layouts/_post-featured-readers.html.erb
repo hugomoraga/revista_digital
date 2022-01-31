@@ -1,23 +1,25 @@
 <div class="row">
     <% @posts.take(3).each do |post| %>
         <div class="col-md-6 post-featured p-3">
-        <%= link_to edit_post_path(post), class: 'text-decoration-none' do %>
+        <%= link_to articulos_post_path(post), class: 'text-decoration-none' do %>
             <div class="card mb-3 post-featured-card rounded-0 border-0 shadow-sm">
                 <% if post.header_image.present? %>
                     <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>)">
-                        <div class="card-body  d-flex  flex-column p-2">
-                            <p class="fs-5">
-                                <% if post.category.present? %>
-                                    <%= post.category.category %>
-                                    <% else %>
-                                    <p>SIN CATEGORIA</p>
-                                <% end %>
-                            </p>
-                    
-                            <p class='text-secondary mb-0 fs-4 mt-auto text-white'><%= truncate(post.description, length: 30) %></p>
+                        <div class="card-body  d-flex  flex-column p-2 position-absolute bottom-0">
+                            <div class="div-card-h" style="margin:1px 0 3px 15px;">
+                                <p class="fs-5 link-light bg-primary d-inline" style="padding: 0px 9px 3px 11px;"> 
+                                    <% if post.category.present? %>
+                                        <%= post.category.category %>
+                                        <% else %>
+                                        <p>SIN CATEGORIA</p>
+                                    <% end %>
+                                </p>
+                            </div>
+                            <div class="div-card-b" style="margin:1px 0 3px 15px;padding:0 30px 10px 7px;width:474px; background: #0000006e">
+                                <p class='text-secondary mb-0 fs-4 mt-auto text-white'><%= truncate(post.description, length: 30) %></p>
 
-                            <h5 class='card-title text-dark fs-3 fw-bold text-white'><%= post.title %>  </h5>
-                        
+                                <h5 class='card-title text-dark fs-3 fw-bold text-white'><%= post.title %>  </h5>
+                            </div>
                         </div>
                     </div>
                 <% else %>
@@ -31,7 +33,9 @@
         </div>
         
     <% end %>
+
 </div>
+
 
 <script>
 var featuredpost = document.getElementsByClassName('post-featured');

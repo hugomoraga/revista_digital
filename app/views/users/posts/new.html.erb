@@ -1,7 +1,7 @@
 <% if current_user %>
     <p> Hola <%=  current_user.email %> </p>
     <p> Tu Perfil es:  <%=  current_user.role %></p>
-    <% if current_user.Editor? %>
+    <% if current_user.editor? %>
     <%= Post.count %>
     <% end %>
         <% else %>
