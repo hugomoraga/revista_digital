@@ -1,9 +1,5 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500&family=Roboto+Condensed:wght@700&family=Roboto:wght@300&display=swap');
 
-.container{
-    background: white !important;
-}
 .fa {
   padding: 5px;
   font-size: 18px;
@@ -26,12 +22,7 @@
 .fa-whatsapp {
   background: #25D366;
 }
-p {
-    font-family: 'Asap', sans-serif;
-}
-h1, h2 {
-    font-family: 'Roboto Condensed', sans-serif;
-}
+
 .descripcion{
     color: #989898 !important;
     font-family: 'Asap', sans-serif;
@@ -50,7 +41,7 @@ h1, h2 {
     padding: 3px 13px 4px 11px;
 }
 </style>
-
+<div class="container">
 <div>
     <p class="fs-5 fw-bold text-uppercase link-light bg-primary d-inline catalogo">
     Categoria
@@ -93,15 +84,11 @@ h1, h2 {
                         <% elsif element.carousel? %>
                             <%if element.carousel.present? %>
                                 <div class="mb-4 image border border-3">   
-                                    <div class="my-slider position-relative p-3 text-center" >
-                                        <% element.carousel.each do |image| %>
-                                            <div style="height:500px;">
-                                            <%= image_tag image %>
-                                            </div>
-                                        <% end %>
-                                    </div>
+                                    <%= render "layouts/carousel", element: element %>
+
                                 </div>
                             <% end %>
                         <% end %>
             <% end %>
         </ul>
+</div>

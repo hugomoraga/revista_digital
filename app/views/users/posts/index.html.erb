@@ -1,34 +1,37 @@
-<h4 class="d-flex justify-content-between mb-4">
-  <span>Entradas</span>
-  <%= link_to 'Nueva Entrada', new_post_path, class: 'btn btn-primary' %>
-</h4>
+<div class="container">
+  <h4 class="d-flex justify-content-between mb-4">
+    <%= link_to 'Nueva Entrada', new_post_path, class: 'btn btn-primary' %>
+  </h4>
 
-<% @posts.each do |post| %>
-  <%= link_to edit_post_path(post), class: 'text-decoration-none' do %>
-    <div class="card mb-3 post-card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-2">
-          <% if post.category.present? %>
-            <%= post.category.category %>
-          <% end %>
-            <% if post.header_image.present? %>
-              <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>);"></div>
+  <% @posts.each do |post| %>
+    <%= link_to edit_post_path(post), class: 'text-decoration-none' do %>
+      <div class="card mb-3 post-card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+            <% if post.category.present? %>
+              <%= post.category.category %>
             <% end %>
-          </div>
-          <div class="col-md-10">
-            <% if post.published? %>
-              <span class="badge bg-primary mb-3">Publicado</span>
-            <% else %>
-              <span class="badge bg-secondary mb-3">No publicado</span>
-            <% end %>
+              <% if post.header_image.present? %>
+                <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>);"></div>
+              <% end %>
+            </div>
+            <div class="col-md-10">
+              <% if post.published? %>
+                <span class="badge bg-primary mb-3">Publicado</span>
+              <% else %>
+                <span class="badge bg-secondary mb-3">No publicado</span>
+              <% end %>
 
-           
-            <h5 class='card-title text-dark'><%= post.title %>  </h5>
-            <p class='text-secondary mb-0'><%= post.description %></p>
-          </div>
-        </div>        
+            
+              <h5 class='card-title text-dark'><%= post.title %>  </h5>
+              <p class='text-secondary mb-0'><%= post.description %></p>
+            </div>
+          </div>        
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+
+
+</div>

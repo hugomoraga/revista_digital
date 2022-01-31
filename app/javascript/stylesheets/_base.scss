@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500&family=Roboto+Condensed:wght@700&family=Roboto:wght@300&display=swap');
+
+p {
+    font-family: 'Asap', sans-serif;
+}
+h1, h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 .users {
     .paragraph {
         transition: background-color 0.5s ease;

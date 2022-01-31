@@ -1,0 +1,58 @@
+ <div class="my-slider position-relative p-3 text-center" >
+    <% element.carousel.each do |image| %>
+        <div style="height:500px;">
+            <%= image_tag image %>
+        </div>
+    <% end %>
+</div>
+
+<script>
+  var slider = tns({
+    container: '.my-slider',
+    items: 1,
+    navPosition: 'botton',
+    autoplayButtonOutput: false,
+    autoplay: true,
+    arrowKeys: true,
+    controlsText : ["<",">"]
+
+
+  });
+</script>
+
+
+<style>
+.controls {
+  list-style: none;
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  transform: translatey(-50%);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls:focus {
+  outline: none;
+}
+
+.controls li:hover {
+  cursor: pointer;
+}
+.tns-nav>.tns-nav-active {
+  background: rgb(190, 189, 189) !important;
+}
+.tns-nav>[aria-controls] {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  margin: 0 10px;
+  border-radius: 50%;
+  background: rgb(146, 137, 137);
+  border: 0;
+}
+.tns-nav {
+  text-align: center;
+  margin: 10px 0;
+}
+</style>

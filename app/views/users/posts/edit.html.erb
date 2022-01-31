@@ -1,38 +1,3 @@
-<style>
-.controls {
-  list-style: none;
-  position: absolute;
-  width: 90%;
-  top: 50%;
-  transform: translatey(-50%);
-  align-items: center;
-  justify-content: space-between;
-}
-
-.controls:focus {
-  outline: none;
-}
-
-.controls li:hover {
-  cursor: pointer;
-}
-.tns-nav>.tns-nav-active {
-  background: rgb(190, 189, 189) !important;
-}
-.tns-nav>[aria-controls] {
-  width: 12px;
-  height: 12px;
-  padding: 0;
-  margin: 0 10px;
-  border-radius: 50%;
-  background: rgb(146, 137, 137);
-  border: 0;
-}
-.tns-nav {
-  text-align: center;
-  margin: 10px 0;
-}
-</style>
 <div class="row">
     <div class="col-md-4">
         <%= link_to 'Atras', posts_path, class: 'btn btn-dark mb-3' %>
@@ -180,13 +145,10 @@
                                        <%= link_to post_element_path(@post, element), method: :delete, class: 'btn btn-secondary mt-2 floar-right delete-btn', data: { confirm: "¿Estas Seguro?"} do %>
                                                     <i class="fas fa-times"></i>
                                                 <% end %>
-                                    <div class="my-slider position-relative p-3 text-center" >
-                                        <% element.carousel.each do |image| %>
-                                            <div style="height:500px;">
-                                            <%= image_tag image %>
-                                            </div>
-                                        <% end %>
-                                    </div>
+
+                                                  <%= render "layouts/carousel", element: element %>
+
+
 
                                 </div>
 
@@ -215,18 +177,4 @@
 </div>
 
 
-
-<script>
-  var slider = tns({
-    container: '.my-slider',
-    items: 1,
-    navPosition: 'botton',
-    autoplayButtonOutput: false,
-    autoplay: true,
-    arrowKeys: true,
-    controlsText : ["<",">"]
-
-
-  });
-</script>
 
