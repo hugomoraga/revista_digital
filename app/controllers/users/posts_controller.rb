@@ -1,4 +1,3 @@
-
 module Users
   class PostsController < UsersController
     before_action :set_post, only: %i[ edit update destroy ]
