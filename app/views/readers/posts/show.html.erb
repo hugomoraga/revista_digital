@@ -1,94 +1,56 @@
-<style>
-
-.fa {
-  padding: 5px;
-  font-size: 18px;
-  width: 28px;
-  text-align: center;
-  text-decoration: none;
-  margin: 0;
-  border-radius: 50%;
-  color: white;
-}
-.fa:hover {
-    opacity: 0.7;
-}
-.fa-facebook {
-  background: #3B5998;
-}
-.fa-twitter {
-  background: #55ACEE;
-}
-.fa-whatsapp {
-  background: #25D366;
-}
-
-.descripcion{
-    color: #989898 !important;
-    font-family: 'Asap', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-}
-.navbar {
-    background: #E3E8E4 !important;
-    padding: 3px 30px 3px 22px;
-}
-.navbar span {
-    font-family: 'Asap', sans-serif;
-    font-size: 16px;
-}
-.catalogo {
-    padding: 3px 13px 4px 11px;
-}
-</style>
 <div class="container">
-<div>
-    <p class="fs-5 fw-bold text-uppercase link-light bg-primary d-inline catalogo">
-    Categoria
-    </p>
-</div>
-<h2>    
-    <%= @post.title %>
-    
-</h2>
-
-        <p class='text-secondary mb-0 descripcion'><%= @post.description %></p>
-        </br>
+    <div>
+        <p class="fs-5 fw-bold text-uppercase link-light bg-primary d-inline catalogo">
+        <%= @post.category.category %>
+        </p>
+    </div>
+    <h2>    
+        <%= @post.title %> 
+    </h2>
+    <p class='text-secondary mb-0 descripcion'><%= @post.description %></p>
+    </br>
+    <div class="container">
         <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1"><b>Por Autor</b> / 20/08/2019</span>
+            <span class="navbar-brand mb-0 h1"><b>por <%= @post.user.name %> <%= @post.user.lastname %> </b> <%= @post.published_at.strftime("%Y/%m/%d") %></span>
             <div>
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-twitter"></a>
-                <a href="#" class="fa fa-whatsapp"></a>
+                <a href="#" class="fs-3"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="fs-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="fs-3"><i class="fab fa-whatsapp"></i></a>
             </div>
         </nav>
-        </br>
-        <ul id='elements' data-action="drop->elements#sort">
-            <% @post.elements.order(position: :asc).each do |element| %>
-                        <% if element.paragraph? %>
-                            <div class="mb-3 p-3 paragraph">
-                                <div class="paragraph-content">
-                                    <% if element.content.present? %>
-                                        <%= element.content %>
-                                    <% end %>
-                                </div>
-                            </div>
-                        <% elsif element.image? %>
-                            <div class="mb-4 p-3 image">
-                                <%if element.image.present? %>
-                                    <div>
-                                        <%= image_tag(element.image) %>
-                                    </div>
-                                <% end %>
-                            </div>
-                        <% elsif element.carousel? %>
-                            <%if element.carousel.present? %>
-                                <div class="mb-4 image border border-3">   
-                                    <%= render "layouts/carousel", element: element %>
+    </div>
 
-                                </div>
-                            <% end %>
-                        <% end %>
+
+        <div class="post-show pb-5">
+       <% if @post.header_image.present? %>
+                    <div class="header-image" style="background-image: url(<%= url_for(@post.header_image) %>)">
+                    </div>
+        <% end %>
+            <% @post.elements.each do |element| %>
+            
+                <% if element.image? %>
+                    <div class="post-image">
+                    <%= image_tag(element.image) %>
+                    </div>
+                <% elsif element.carousel? %>
+                    <%= render "layouts/carousel", element: element %>
+                <% else %>
+                    <%= element.content %>
+                <% end %>
             <% end %>
-        </ul>
+        </div>
+       
 </div>
+<style>
+.post-show .header-image {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+}
+.post-show .post-image img {
+    width: 100%;
+    padding: 10px;
+}
+
+
+</style>

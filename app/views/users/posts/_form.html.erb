@@ -39,6 +39,7 @@
 
     <% end %>
 
+    
 
   
   <div class="form-group pt-2">
@@ -46,7 +47,13 @@
     <%= form.select :category_id, Category.all.map {|c| [c.category, c.id]}, {}, {class: "form-select mt-1"}  %>
   </div>
 
+  <% if post.id.present? %>
+  <%= link_to 'Ver Post', articulos_post_path(post), class: 'btn btn-info' %>
+  <%= link_to 'Eliminar', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger mt-2' %>
+
+  <% end %>
+
   <div class="actions">
-    <%= form.submit class: 'btn btn-primary mt-2 btn-block' %>
+    <%= form.submit  class: 'btn btn-primary mt-2 btn-block', value: 'Actualizar' %>
   </div>
 <% end %>

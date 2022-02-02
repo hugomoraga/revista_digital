@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :magazines
   resources :opinions, :path => 'opinion'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
