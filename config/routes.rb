@@ -7,11 +7,17 @@ Rails.application.routes.draw do
   devise_for :users
   get 'home/index'  
   get '/maqueta' => 'readers/posts#maqueta', as: :maqueta
+ 
   get '/historico' => 'historic#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "readers/home#index"
   
-  get '/articulo/:id' => 'readers/posts#show', as: :articulos_post
+  resources :articulos, controller: "readers/home", as: :articulos_post do
+    collection do
+      match "search" => "readers/home#search", via: [:get, :post], as: :search
+    end
+  end
+
 
   scope module: 'users' do 
     resources :posts, :path => 'publicaciones' do

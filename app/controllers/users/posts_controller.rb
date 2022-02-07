@@ -4,7 +4,11 @@ module Users
 
     # GET /posts or /posts.json
     def index
-      @posts = current_user.posts
+      if current_user.role != 'admin'
+        @posts = current_user.posts
+      else
+        @posts = Post.all
+      end
     end
 
     # GET /posts/1 or /posts/1.json
@@ -57,7 +61,7 @@ module Users
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        @post = current_user.posts.friendly.find(params[:id])
+        @post = Post.friendly.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.

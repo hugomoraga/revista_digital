@@ -1,17 +1,10 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;600&family=Rubik:wght@300;500&display=swap');
-
-h5 {
-    font-family: 'Asap', sans-serif; 
-}
-</style>
 <div class="row">
     <% @posts.each do |post| %>
         <div class="col-md-4 col-sm-6">
         <%= link_to articulos_post_path(post), class: 'text-decoration-none' do %>
-            <div class="card mb-3 post-card rounded-0 post-card border-0 shadow-sm pb-4">
+            <div class="card mb-3  rounded-0 post-card border-0 shadow-sm pb-4">
                 <% if post.header_image.present? %>
-                    <div class="header-image" style="background-image: url(<%= url_for(post.header_image) %>)">
+                    <div class="show header-image" style="background-image: url(<%= url_for(post.header_image) %>)">
                     </div>
                 <% else %>
                     <div class="p-4"> SIN IMAGEN</div>

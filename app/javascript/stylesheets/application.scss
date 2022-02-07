@@ -1,6 +1,10 @@
 @import 'trix/dist/trix';
 @import './base';
 @import './actiontext';
+@import './readers/posts';
+
+@import './custom.scss';
+
+@import "~bootstrap/scss/bootstrap";
 
 // Lectores 
-@import './readers/posts';

@@ -26,6 +26,18 @@
     <%= form.number_field :year %>
   </div>
 
+   <div class="field"> 
+    <%= form.label :cover %>
+    <%= form.file_field :cover %> 
+  </div>
+
+   <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file %>
+  </div>
+
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

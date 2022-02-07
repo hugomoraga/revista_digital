@@ -1,0 +1,48 @@
+<div class="container">
+    <div>
+        <p class="fs-5 fw-bold text-uppercase link-light bg-primary d-inline catalogo">
+        <%= @post.category.category %>
+        </p>
+    </div>
+    <h2>    
+        <%= @post.title %> 
+    </h2>
+    <p class='text-secondary mb-0 descripcion'><%= @post.description %></p>
+    </br>
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1"><b>por <%= @post.user.name %> <%= @post.user.lastname %> </b> <%= @post.published_at.strftime("%Y/%m/%d") %></span>
+            <div>
+                <a href="#" class="fs-3"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="fs-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="fs-3"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </nav>
+    </div>
+
+
+        <div class="post-show pb-5">
+       <% if @post.header_image.present? %>
+                    <div class="header-image" style="background-image: url(<%= url_for(@post.header_image) %>)">
+                    </div>
+        <% end %>
+            <% @post.elements.each do |element| %>
+            
+                <% if element.image? %>
+                    <div class="post-image p-3">
+                    <%= image_tag(element.image) %>
+                    </div>
+                <% elsif element.carousel? %>
+                    <div class="image">
+                        <%= render "layouts/carousel", element: element %>
+
+                    </div>
+                <% else %>
+                <div class="p-3">
+                    <%= element.content %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+       
+</div>

@@ -56,19 +56,19 @@
            <%= form_with(model: [@post, @element], html: { class: 'col-auto' }) do |form| %>
                 <%= form.hidden_field :element_type, value: 'paragraph' %>
                 <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
-                                <i class="fas fa-paragraph"></i>
+                            Parrafo    <i class="fas fa-paragraph"></i>
                 <% end %>
             <% end %>
             <%= form_with(model: [@post, @element], html: { class: 'col-auto' }) do |form| %>
                 <%= form.hidden_field :element_type, value: 'image' %>
                 <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
-                   <i class="fas fa-image"></i>
+                  Imagen <i class="fas fa-image"></i>
                 <% end %>
             <% end %>
             <%= form_with(model: [@post, @element], html: { class: 'col-auto' }) do |form| %>
                 <%= form.hidden_field :element_type, value: 'carousel' %>
                 <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
-                   <i class="fas fa-image"></i>
+                 Carrusel  <i class="fas fa-images"></i>
                 <% end %>
             <% end %>
         </div>

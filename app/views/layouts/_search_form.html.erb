@@ -1,0 +1,8 @@
+<%= search_form_for @q, url: search_articulos_post_index_path, html: { method: :post }  do |f| %>
+
+  # Search if the name field contains...
+  <%= f.label :title %>
+  <%= f.search_field :title %>
+
+  <%= f.submit %>
+<% end %>

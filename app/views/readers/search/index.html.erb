@@ -1,0 +1,24 @@
+<div class="container">
+
+   <%= render "layouts/search_form" %>
+
+
+<div class="row">
+    <% @posts.each do |post| %>
+        <div class="col-md-4 col-sm-6 card m-3">
+       
+            
+                           <h5 class='card-title text-dark fs-3 fw-bold'><%= post.title %>  </h5>
+                      
+           
+        
+        
+        </div>
+        
+    <% end %>
+</div>
+
+
+
+
+</div>

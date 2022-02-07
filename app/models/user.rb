@@ -9,4 +9,7 @@ class User < ApplicationRecord
   def set_default_role
       self.role ||= :user
   end
+  def admin?
+    self.role == "admin"
+  end
 end
