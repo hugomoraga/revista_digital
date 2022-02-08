@@ -1,8 +1,18 @@
+<div class="search" style="background-color: #fff">
+
 <%= search_form_for @q, url: search_articulos_post_index_path, html: { method: :post }  do |f| %>
 
-  # Search if the name field contains...
-  <%= f.label :title %>
-  <%= f.search_field :title %>
 
-  <%= f.submit %>
+
+<%= button_tag(type: 'submit', class: 'text-dark bg-transparent border-0') do %>
+  <span aria-hidden="true" class=" fas fa-search"></span>
 <% end %>
+
+  <%= f.search_field :title_cont do %>
+  
+  <% end %>
+
+<% end %>
+
+
+</div>

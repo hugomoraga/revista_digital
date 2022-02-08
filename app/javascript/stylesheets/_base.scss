@@ -39,6 +39,7 @@ h1, h2 {
     }
 
     .image {
+        text-align: center;
         img {
             max-width: 90%;
             text-align: center;
@@ -77,4 +78,24 @@ h1, h2 {
 }
 
 
+.search {
+
+    width: 233px;
+    border-radius: 5px;
+
+    input {
+        height: 35px;
+        border: 0;
+        width: 200px;
+        border-radius: 5px;
+
+     
+    }
+
+    .btn {
+        margin-bottom: 4px;
+    }
+
  
+
+}

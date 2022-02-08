@@ -7,11 +7,22 @@
     <h2>    
         <%= @post.title %> 
     </h2>
-    <p class='text-secondary mb-0 descripcion'><%= @post.description %></p>
-    </br>
-    <div class="container">
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1"><b>por <%= @post.user.name %> <%= @post.user.lastname %> </b> <%= @post.published_at.strftime("%Y/%m/%d") %></span>
+
+    <div class="mb-0 fs-5 fw-bold" style="color: #d0d0d0;">
+    
+            <% @post.elements.each do |element| %>
+
+                <% if element.content.present? %>
+                    <%= truncate(strip_tags(element.content.to_s), length: 170) %>
+                 
+                    <% end %>
+           <% end %>
+    
+    
+    </div>
+    <div class="container bg-secondary my-3">
+        <nav class="navbar navbar-light px-3 py-0 ">
+            <div class="navbar-brand mb-0 h1"> <strong>Por <%= @post.user.name %> <%= @post.user.lastname %></strong>  <span class="fw-lighter"> <%= @post.published_at.strftime("%Y/%m/%d") %></span></div>
             <div>
                 <a href="#" class="fs-3"><i class="fab fa-facebook"></i></a>
                 <a href="#" class="fs-3"><i class="fab fa-twitter"></i></a>

@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
+<div class="container">
+  <div class="row">
     <div class="row"><h3>2018</h3>
     <% @year2018.each do |magazine| %>
 
       <div class="col-2">
-          <%= magazine.name %>
           <%= magazine.month %>
           <%= magazine.year %>
           <% if magazine.cover.present?%>
@@ -16,7 +16,7 @@
             <% if magazine.file.present? %> </a> <% end %>
           <% end %>
           <% if magazine.file.present? %>
-          <%= url_for(magazine.file) %>
+          <a href="<%= url_for(magazine.file) %>">Ver</a>
           <% end %>
           
           <%= link_to 'Show', magazine %>
@@ -25,11 +25,13 @@
           <%= link_to 'Destroy', magazine, method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     <% end %>
-        </div>
+    </div>
 
   
-</div>
+  </div>
   
+</div>
+
 
 
 <%= link_to 'New Magazine', new_magazine_path %>

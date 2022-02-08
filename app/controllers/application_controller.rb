@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_global_search_variable
+
   rescue_from SecurityError do |exception|  
     redirect_to root_url
   end
@@ -15,6 +17,11 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)  
     user.admin? ? admin_dashboard_path : root_path 
+  end
+
+  def set_global_search_variable
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinc: true)
   end
       
   protected

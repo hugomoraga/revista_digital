@@ -1,5 +1,5 @@
 <div class="container">
-<h1 class="pb-4">  <%= @category.category %> </h1>
+<h1 class="bg-primary text-white text-uppercase px-3 py-2 fs-4">  <%= @category.category %> </h1>
 
  <%= render "layouts/post-featured-readers" %>
 
@@ -7,11 +7,5 @@
  <%= render "layouts/post-readers" %>
 
 
-<% if current_user %>
-  <% if current_user.admin? %>
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
-  <% end %>
-<% end %>
 </div>
 
