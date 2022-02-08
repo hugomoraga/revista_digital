@@ -10,7 +10,7 @@
 
     <div class="mb-0 fs-5 fw-bold" style="color: #d0d0d0;">
     
-            <% @post.elements.each do |element| %>
+            <% @post.elements.order([:position]).each do |element| %>
 
                 <% if element.content.present? %>
                     <%= truncate(strip_tags(element.content.to_s), length: 170) %>
@@ -39,17 +39,20 @@
         <% end %>
             <% @post.elements.each do |element| %>
             
+            
                 <% if element.image? %>
                     <div class="post-image p-3">
                     <%= image_tag(element.image) %>
                     </div>
                 <% elsif element.carousel? %>
+
                     <div class="image">
                         <%= render "layouts/carousel", element: element %>
 
                     </div>
                 <% else %>
                 <div class="p-3">
+
                     <%= element.content %>
                     </div>
                 <% end %>

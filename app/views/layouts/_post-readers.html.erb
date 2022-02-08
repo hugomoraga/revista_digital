@@ -2,7 +2,7 @@
     <% @posts.each do |post| %>
         <div class="col-md-4 col-sm-6">
         <%= link_to articulos_post_path(post), class: 'text-decoration-none' do %>
-            <div class="card mb-3  rounded-0 post-card border-0 shadow-sm pb-4">
+            <div class="card mb-3  rounded-0 post-card border-0  pb-4">
                 <% if post.header_image.present? %>
                     <div class="show header-image" style="background-image: url(<%= url_for(post.header_image) %>)">
                     </div>

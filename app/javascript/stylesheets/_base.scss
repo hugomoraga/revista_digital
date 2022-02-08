@@ -99,3 +99,23 @@ h1, h2 {
  
 
 }
+
+.post-show {
+    .trix-content {
+
+        blockquote {
+          border: 0 solid #c9a22a;
+          border-left-width: 0.22em;
+          border-right-width: 0.22em;
+          color: #c9a22a;
+          font-weight: bold;
+          font-size: 1.2em;
+      
+          margin: 2em;
+
+          padding-left: 4em;
+          padding-right: 4em;
+        
+        }
+    }
+}

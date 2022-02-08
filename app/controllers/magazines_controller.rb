@@ -2,10 +2,7 @@ class MagazinesController < InheritedResources::Base
 
 def index
   @magazines = Magazine.all
-  @year2018 = Magazine.where(year: "2018")
-  @year2019 = Magazine.where(year: "2019")
-  @year2020 = Magazine.where(year: "2020")
-
+  @grouped_magazines = @magazines.order(year: :desc).group_by { |year| year.year }
 
 
 end

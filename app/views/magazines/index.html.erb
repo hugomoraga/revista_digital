@@ -1,35 +1,44 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <div class="row">
-    <div class="row"><h3>2018</h3>
-    <% @year2018.each do |magazine| %>
 
-      <div class="col-2">
-          <%= magazine.month %>
-          <%= magazine.year %>
-          <% if magazine.cover.present?%>
-            <% if magazine.file.present? %>
-            <a href="<%= url_for(magazine.file) %>">
-            <% end %>
-              <img src="<%= url_for(magazine.cover) %>">
-            <% if magazine.file.present? %> </a> <% end %>
-          <% end %>
-          <% if magazine.file.present? %>
-          <a href="<%= url_for(magazine.file) %>">Ver</a>
-          <% end %>
-          
-          <%= link_to 'Show', magazine %>
-
-          <%= link_to 'Edit', edit_magazine_path(magazine) %>
-          <%= link_to 'Destroy', magazine, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </div>
-    <% end %>
+  <div class="row my-3">
+    <div class="col-md-6">
+      IMAGEN REVISTA
     </div>
+    <div class="col-md-6">
+      <h3>Revista Armas y Servicios</h3>
+      <h2>El gran instrumento de informacion insitucional</h2>
+      <p>
+        En materia de comunicaciones del Ejercito, diciembre de 1974 constituyo un hito al aparecer el primer numero de esta publicacion. Desde entonces, y con un total de 116 numeros, este medio de prensa ha sido  el reflejo de la evolucion y los cambios en materia de Defensa, Fuerza Terrestre y formacion para los integrantes de la institucion
+      </p>
 
-  
+      <a href="#" class="btn btn-primary rounded-0 text-white fs-5 fw-bold"> LEER HISTORIA DE LA REVISTA</a>
+
+    </div>
   </div>
-  
+
+  <% @grouped_magazines.each do | year, magazines | %>
+    <div class="row"><div class="col-12 p-2 my-3 bg-secondary fw-bold"> <%= year %></div>
+      <% magazines.each do |magazine| %>
+        <div class="col-2">
+            <%= magazine.month %> <%= magazine.year %>
+                <% if magazine.cover.present?%>
+                  <img src="<%= url_for(magazine.cover) %>">
+                <% end %>
+          
+                <% if magazine.file.present? %>
+                  <a href="<%= url_for(magazine.file) %>">Ver</a>
+                <% end %>
+            
+                  <%= link_to 'Show', magazine %>
+
+                  <%= link_to 'Edit', edit_magazine_path(magazine) %>
+                  <%= link_to 'Destroy', magazine, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 
