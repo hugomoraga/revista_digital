@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def set_global_search_variable
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinc: true)
+    @results = @q.result(distinc: true)
   end
       
   protected

@@ -23,6 +23,11 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'ransack'
+gem 'kaminari'
+gem 'bootstrap5-kaminari-views'
+gem 'devise-i18n'
+
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

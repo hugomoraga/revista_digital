@@ -8,11 +8,6 @@ module Readers
       @opinions = Post.category_opinion
     end
 
-    def search
-      @q = Post.ransack(params[:q])
-      @posts = @q.result(distinc: true)
-     
-    end
 
 
     def show

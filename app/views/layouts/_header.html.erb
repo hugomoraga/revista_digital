@@ -1,13 +1,64 @@
+<style>
+/* Dropdown Button */
+.dropbtn {
+  color: #2b451d;
+  padding: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #8E9A82 ;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 50vw;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 15px 40px;
+  text-decoration: none;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dropdown-content li {
+    list-style: none;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+</style>
+
 <header>
 
-    <div style="background-color: #677740; height: 250px">
+    <div style="background-color: #677740; min-height: 250px">
         <div class="row d-flex">
-            <div class="col-md-2">
+            <div class="col-md-2 col-6">
                 <div class="logo-brand p-3">
                         <img src="<%= image_url('logo.png') %>" style="height:180px;"">
                 </div>   
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-6">
                 <div class="p-5">
                     <div class="display-4">
                         <h2 class="text-uppercase text-primary fw-normal">Revista Digital</h2>
@@ -18,9 +69,9 @@
                 </div>
                
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <div class="row d-flex justify-content-end">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-6">
                         <div class="w-75 pt-3 position-relative">
                                <%= render "layouts/search_form" %>
 
@@ -28,14 +79,28 @@
                     </div>
                         
                         
-                    <div class="col-md-4 pb-5 pt-4">
+                    <div class="col-md-4 pb-5 pt-4 col-6">
                         <img src="<%= image_url('ejercito-logo.png') %>" style="height:130px;"">
                     </div>
                 </div>
-                <div class="row d-flex">
-
-                    <div class="col-md-6 offset-md-4 d-flex justify-content-center position-relative">
-                        <div class="fs-3 text-end text-white fw-bold text-uppercase p-2 mb-3  px-5" style="background-color: #c9a22a;">
+           
+                <!-- Responsive Menu -->
+                <div class="row d-flex d-block d-lg-none " style="background-color:#dae1dd;">     
+                    <div class="col-6"> 
+                        <div class="dropdown w-100">
+                            <button onclick="myFunction()" class="dropbtn fs-3 w-100 fw-bold text-uppercase">Categorias</button>
+                                <div id="myDropdown" class="dropdown-content">
+                                    <% menus.each do |menu| %>
+                                        <%  if menu.category != 'Opinión' %>
+                                            <li class="text-uppercase  align-items-center "> <%= link_to menu.category, category_path(menu), :class => 'text-decoration-none text-primary' %></li>  
+                                        <% end %>
+                                    <% end %>
+                                </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-6">
+                        <div class="fs-3 text-end text-white fw-bold text-uppercase" style="background-color: #c9a22a;">
                              <a  class="text-decoration-none text-white" href="/historico">Archivo Historico</a>
                         </div>
                     </div>
@@ -45,20 +110,42 @@
     </div>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-secondary"">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+
+
+     
         <div class="collapse navbar-collapse" id="menu-principal">
             <ul class=" fs-4 d-block p-2 container justify-content-around">
                 <% menus.each do |menu| %>
                     <%  if menu.category != 'Opinión' %>    
                         <li class="text-uppercase d-inline-flex align-items-center justify-content-end "> <%= link_to menu.category, category_path(menu), :class => 'text-decoration-none nav-link text-primary' %> <span class="pb-2 fw-bold">/</span> </li>
-                    <% end %>
+                   <% end %>
 
-                <% end %>
+                <% end %> 
             </ul>
         </div>
     </nav>
 </header>
 
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>

@@ -1,8 +1,18 @@
 ActiveAdmin.register Post do
 
-  permit_params :title, :description, :published, :published_at, :user_id, :slug, :category_id, :verifiedone
-  
-  menu label: "Articulos"
+  index do
+    # column "number", :id
+    selectable_column
+    column :id
+    column 'Titulo', :title
+    column 'Categoria', :category
+    column 'Verificado', :verifiedone
+    column 'Publicado', :published
+    column 'Fecha de Publicacion', :published_at
+
+    actions
+
+  end
 
 
   # See permitted parameters documentation:
@@ -14,10 +24,10 @@ ActiveAdmin.register Post do
   #
   # or
   #
-  # permit_params do
-  #   permitted = [:title, :description, :published, :published_at, :user_id, :slug, :category_id, :verifiedone]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+   permit_params do
+     permitted = [:title, :description, :published, :published_at, :user_id, :slug, :category_id, :category, :verifiedone]
+     permitted << :other if params[:action] == 'create' && current_user.admin?
+     permitted
+   end
   
 end

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/maqueta' => 'readers/posts#maqueta', as: :maqueta
   get '/categorias' => 'categories#index'
   get '/historico' => 'magazines#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/ingresar', to: redirect('/users/sign_in')
+ # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "readers/home#index"
   
   resources :articulos, controller: "readers/home", as: :articulos_post do
@@ -24,4 +25,5 @@ Rails.application.routes.draw do
       resources :elements
     end
   end
+  
 end
