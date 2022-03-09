@@ -26,6 +26,7 @@ gem 'ransack'
 gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
 gem 'devise-i18n'
+gem 'rails-i18n'
 
 
 
