@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_02_161000) do
+ActiveRecord::Schema.define(version: 2022_03_09_231228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,15 @@ ActiveRecord::Schema.define(version: 2022_02_02_161000) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "checks", force: :cascade do |t|
+    t.boolean "first", default: false
+    t.boolean "second", default: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_checks_on_post_id"
+  end
+
   create_table "elements", force: :cascade do |t|
     t.string "element_type"
     t.bigint "post_id", null: false
@@ -125,7 +134,6 @@ ActiveRecord::Schema.define(version: 2022_02_02_161000) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "category_id"
-    t.boolean "verifiedone", default: false
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -146,6 +154,7 @@ ActiveRecord::Schema.define(version: 2022_02_02_161000) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "checks", "posts"
   add_foreign_key "elements", "posts"
   add_foreign_key "posts", "users"
 end

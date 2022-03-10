@@ -1,5 +1,5 @@
 <div class="row">
-    <% @posts.take(3).each do |post| %>
+    <% @posts.published.most_recently_published.last(3).each do |post| %>
         <div class="col-md-6 post-featured p-3">
         <%= link_to articulos_post_path(post), class: 'text-decoration-none' do %>
             <div class="card mb-3 post-featured-card rounded-0 border-0 shadow-sm">

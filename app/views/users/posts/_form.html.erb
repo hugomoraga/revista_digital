@@ -32,13 +32,19 @@
       </div>
     </div>
 
-    <% if current_user.editor?  %>
+  
 
-    <%= form.label :Verificada  %>
-    <%= form.check_box :verifiedone, class: '' %>
+      <div class="form-group">
+      
+      <%= form.fields_for :check do |builder| %>
+       <%= builder.label :first %>
+        <%= builder.check_box :first %>
+               <%= builder.label :second %>
 
-    <% end %>
+        <%= builder.check_box :second %>
 
+      <% end %>
+      </div>
     
 
   
@@ -57,3 +63,4 @@
     <%= form.submit  class: 'btn btn-primary mt-2 btn-block', value: 'Actualizar' %>
   </div>
 <% end %>
+

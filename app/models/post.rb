@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :elements, -> { order('position ASC') }, dependent: :delete_all
+  has_one :check, dependent: :delete
+  accepts_nested_attributes_for :check
 
   has_one_attached :header_image
 

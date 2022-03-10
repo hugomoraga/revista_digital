@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   scope module: 'users' do 
     resources :posts, :path => 'publicaciones' do
       resources :elements
+      resources :checks
     end
   end
   

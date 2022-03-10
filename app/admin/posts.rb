@@ -6,8 +6,11 @@ ActiveAdmin.register Post do
     column :id
     column 'Titulo', :title
     column 'Categoria', :category
-    column 'Verificado', :verifiedone
     column 'Publicado', :published
+    column 'Verificacion', :check do |posts|
+      posts.check
+    end
+      
     column 'Fecha de Publicacion', :published_at
 
     actions
@@ -25,7 +28,7 @@ ActiveAdmin.register Post do
   # or
   #
    permit_params do
-     permitted = [:title, :description, :published, :published_at, :user_id, :slug, :category_id, :category, :verifiedone]
+     permitted = [:title, :description, :published, :published_at, :user_id, :slug, :category_id, :category, :check, :first, :second]
      permitted << :other if params[:action] == 'create' && current_user.admin?
      permitted
    end

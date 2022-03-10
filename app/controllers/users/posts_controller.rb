@@ -20,6 +20,7 @@ module Users
     # GET /posts/new
     def new
       @post = current_user.posts.build
+      @post.build_check
     end
 
     # GET /posts/1/edit
@@ -66,7 +67,7 @@ module Users
 
       # Only allow a list of trusted parameters through.
       def post_params
-        params.require(:post).permit(:title, :description, :header_image, :category_id, :verifiedone)
+        params.require(:post).permit(:title, :description, :header_image, :category_id, check_attributes: [:id, :first, :second])
       end  
   end
 end
